@@ -17,8 +17,8 @@ namespace ConceptualExample {
      */
 
     // forward declaration - see short variant below
-    // class ConcreteComponentA;
-    // class ConcreteComponentB;
+     class ConcreteComponentA;
+     class ConcreteComponentB;
 
     class VisitorBase {
     public:

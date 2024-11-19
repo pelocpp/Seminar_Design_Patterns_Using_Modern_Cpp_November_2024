@@ -6,6 +6,14 @@ Guten Morgen
 
 Peter Loos
 
+peter.loos@gmx.de
+
+Literatur:
+
+Marc Gregoire - Professional C++  // Auflage 6
+
+Nicolai Josuttis
+
 // =================
 
 Entwicklung // Schulung
@@ -344,7 +352,215 @@ Facaden:  Win32 ==> .NET Framework
 
 =====================================
 
+Concepts // Requirements
 
+Siehe
+
+Text:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/ConceptsRequiresFunctions/ConceptsRequiresFunctions.md
+
+Quellcode:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/ConceptsRequiresFunctions/ConceptsRequiresFunctions.cpp
+
+    template <typename T> 
+    auto add(T a, T b)
+    {
+        return a + b;
+    }
+
+Für welche Typen T:
+
+"Für alle" - wenn es sich übersetzen lässt:
+
+== Reagierendes Verhalten
+== Proaktives Verhalten
+
+Beispiel:  std::string
+
+Beispiel zum Iterator:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/Exercises/Exercises_17_Concepts.cpp
+
+=======================================================
+
+IMHO:
+
+"Bin kritisch gegenüber Templates"
+
+Pro: Generisch  ==> PERFORMANZ !!!!!!!!!!!!
+
+Python, JavaScript:  KEINE Datentypen.  // Objekt  ===> INDIREKTIONEN.
+
+float,  double, long double   => typename T  // Blickwinkel (concept)
+
+=======================================================
+
+CRTP:  Performanz  /// Vererbung (virtual).
+
+Vorstellung:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/CRTP/CRTP.md
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/CRTP/CRTP.cpp
+
+Was bringt dieses Konzept bzgl. Performanz ???
+
+Beispiel:
+
+https://github.com/pelocpp/cpp_modern/blob/master/GeneralSnippets/Exercises/Exercises_10_CRTP.md#aufgabe-1-der-kuriose-polymorphismus-crtp-an-einem-beispiel-betrachtet
+
+=====================================================================
+
+Containern  
+
+Ich kann die Klassen "nicht anfassen": 
+
+Verjüngung auf einen Basistyp  Geht nicht immer
+
+
+std::string  // int // class ABC final 
+
+=====================================================================
+
+
+Command - Pattern:
+
+>>> Synchroner Methoden / Funktionsaufruf.
+
+Nicht immer ist ein solcher Aufruf möglich:
+
+ISR: Interrupt Service Routine:  Informationen // KEINE ZEIT.
+
+Muss Informationen zwischenspeichern.
+
+"Später"   // nicht mehr in einem kritischen Kontext:
+
+        Führt eine Methode den Wunsch / das Ziel der Daten aus,
+        die in der ISR entgegengenommen worden sind.
+
+Nachgelagerter Funktionsaufruf.
+
+==========================
+
+Web Service  // Sparkassen App
+
+Kontoaktion: Einzahlen / Abheben.
+
+========================================
+
+Undo  // Redo - Funktionalität
+------------------------------
+
+
+=====================================================
+
+Fly Weight Pattern:
+
+Situation:
+
+Habe viele Objekte ... 100.000 oder mehr
+
+Manche / etliche der Daten dieser Objekte kommen doppelt vor.
+
+"Gemeinsame Daten rausziehen"
+
+Beschreibung: Detail - verliebt.
+
+Frage:
+
+===> "Suche nach roten Autos":
+
+Ja, dauert länger.
+
+ABER: SPEICHER !!!!
+
+Konflikt: Laufzeit versus Speicher.
+
+======================================================
+
+Builder Pattern:
+
+"Named Parameters Constructor"
+------------------------------
+
+With the help of a Builder.
+
+
+Window w (caption = "MeinFenster", Width = 100);
+
+Sorry, so nicht.
+
+Aber:
+
+WindowBuilder wb ;
+
+// functional programming
+wb.caption("MeinFenster").Size(100).Top(10).Left(20);
+
+C++:  "Fluent Programming Styles"
+
+std::cout << "Wert:" << n << std::endl;
+
+==================================================
+
+Visitor:
+
+Besucher:  
+
+Legacy - Code:   Zulieferung.
+
+"As it is"
+
+Anpassungen:  Smart so weit es geht machen:
+
+==> "Besuchen"
+
+A) Composite-Pattern
+
+B) Iterator-Pattern.
+
+==================================================
+
+Modern C++:
+
+Alternatives Konzept für das Besuchen:
+
+std::variant
+
+Helfer:
+
+  Excel // Sheets:    Zelle Cell
+
+  ==>  Zeichenkette, Wert, Datum, Currency...
+
+
+===============================================
+
+== Policy Based Design
+
+Klassiker:
+
+C++:
+
+int* ip;
+
+ip = new int();            // scalar new
+// könnte auch sein:
+ip = new int[100];         // array new
+
+======================
+
+Später:
+
+delete ip;         // scalar delete
+// oder
+delete[] ip;       // array delete
+
+
+
+std::shared_ptr // std::weak_ptr  (lock()   )
 
 
 

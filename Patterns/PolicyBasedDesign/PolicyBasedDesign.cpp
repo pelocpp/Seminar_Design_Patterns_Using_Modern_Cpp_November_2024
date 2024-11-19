@@ -76,7 +76,7 @@ namespace PolicyBasedDesign_02 {
             : m_ptr{ ptr }, m_deletionPolicy{ policy } {}
 
         ~SmartPtr() {
-            m_deletionPolicy(m_ptr);
+            m_deletionPolicy(m_ptr);  // Funktor // Callable Object
         }
 
         // operators
@@ -96,14 +96,14 @@ namespace PolicyBasedDesign_02 {
 
     template <typename T>
     struct ScalarDeletePolicy {
-        void operator()(T* ptr) const {
+        void operator() (T* ptr) const {
             delete ptr;
         }
     };
 
     template <typename T>
     struct VectorDeletePolicy {
-        void operator()(T* ptr) const {
+        void operator() (T* ptr) const {
             delete[] ptr;
         }
     };
@@ -136,6 +136,7 @@ namespace PolicyBasedDesign_10 {
         }
     };
 
+
     template <typename TOutputPolicy>
     class Logger {
     public:
@@ -146,6 +147,7 @@ namespace PolicyBasedDesign_10 {
     private:
         TOutputPolicy m_policy;
     };
+
 
     static void test() {
 

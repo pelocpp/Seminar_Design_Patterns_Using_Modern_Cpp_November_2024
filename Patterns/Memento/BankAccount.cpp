@@ -19,12 +19,14 @@ namespace BankAccountMemento
         struct Memento
         {
             Memento(int balance) : m_balance{ balance } {}
+
             int m_balance;
         };
 
         size_t m_index;
-        std::vector<std::shared_ptr<Memento>> m_mementos;
 
+        std::vector<std::shared_ptr<Memento>> m_mementos;   // darf nicht zu gross werden
+                                   // Längenbegrenzung
     public:
         // c'tors
         BankAccount();
@@ -37,6 +39,7 @@ namespace BankAccountMemento
         void undo();
         void redo();
 
+    private:
         void restore(const std::shared_ptr<Memento>& memento);
     };
 

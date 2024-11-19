@@ -67,6 +67,7 @@ namespace Bookstore_ExampleClassic {
     {
     private:
         using Stock = std::vector<std::shared_ptr<IMedia>>;
+
         using StockList = std::initializer_list<std::shared_ptr<IMedia>>;
 
     public:
@@ -81,6 +82,8 @@ namespace Bookstore_ExampleClassic {
             double total{};
 
             for (const auto& media : m_stock) {
+
+                // indirekter Aufruf
                 total += media->getPrice() * media->getCount();
             }
 
@@ -158,11 +161,12 @@ namespace Bookstore_ExampleModern {
         // getter / setter
         std::string getAuthor() const { return m_author; }
         std::string getTitle() const { return m_title; }
+
         double getPrice() const { return m_price; }
         size_t getCount() const { return m_count; }
     };
 
-    class Movie
+    class Movie  // Basisschnittstelle
     {
     private:
         std::string m_title;
@@ -177,10 +181,12 @@ namespace Bookstore_ExampleModern {
         // getter / setter
         std::string getTitle() const { return m_title; }
         std::string getDirector() const { return m_director; }
+
         double getPrice() const { return m_price; }
         size_t getCount() const { return m_count; }
     };
 
+    
     template<typename T>
     concept MediaConcept = requires (const T & m)
     {
@@ -188,12 +194,21 @@ namespace Bookstore_ExampleModern {
         { m.getCount() } -> std::same_as<size_t>;
     };
 
+
+
+
     template <typename ... TMedia>
+        
         requires (MediaConcept<TMedia> && ...)
+    
     class Bookstore
     {
     private:
-        using Stock = std::vector<std::variant<TMedia ...>>;
+
+        using StockReal = std::vector<std::variant<Book, Movie>>;
+
+        using Stock = std::vector <std::variant <TMedia ...>>;
+
         using StockList = std::initializer_list<std::variant<TMedia ...>>;
 
     public:
@@ -203,7 +218,8 @@ namespace Bookstore_ExampleModern {
         template <typename T>
             requires MediaConcept<T>
         void addMedia(const T& media) {
-            m_stock.push_back(media);
+            m_stock.push_back(media);  // Typ Konvertierung
+           // m_stock.push_back(std::variant<TMedia ...>(media));
         }
 
         // or
@@ -308,7 +324,9 @@ namespace Bookstore_ExampleModern {
         Movie movieTarantino{ "Once upon a time in Hollywood", "Quentin Tarantino", 6.99, 3 };
         Movie movieBond{ "Spectre", "Sam Mendes", 8.99, 6 };
 
+
         using MyBookstore = Bookstore<Book, Movie>;
+
 
         MyBookstore bookstore = MyBookstore {
             cBook, movieBond, javaBook, cppBook, csharpBook, movieTarantino

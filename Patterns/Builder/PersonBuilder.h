@@ -19,7 +19,7 @@ public:
         : m_person{ name }
     {}
 
-    operator Person&& (); // type conversion operator
+    operator Person&& ();       // type conversion operator
 
     PersonBuilder& lives         (const std::string& country);
     PersonBuilder& at            (const std::string& street_address);

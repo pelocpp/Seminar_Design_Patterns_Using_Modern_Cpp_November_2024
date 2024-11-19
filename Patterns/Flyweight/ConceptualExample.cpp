@@ -100,6 +100,7 @@ namespace ConceptualExample {
     class FlyweightFactory
     {
     private:
+        //                  Schlüssel (key)  // Info
         std::unordered_map<std::string, std::shared_ptr<Flyweight>> m_flyweights;
 
         /**
@@ -107,7 +108,7 @@ namespace ConceptualExample {
          */
         std::string getKey(const SharedState& ss) const
         {
-            return ss.m_brand + "_" + ss.m_model + "_" + ss.m_color;
+            return ss.m_brand + "_" + ss.m_model + "_" + ss.m_color;  // Key == Zeichenkettenkonkatenation
         }
 
     public:
@@ -129,7 +130,7 @@ namespace ConceptualExample {
         {
             std::string key{ getKey(sharedState) };
 
-            if (m_flyweights.find(key) == m_flyweights.end())
+            if (m_flyweights.find(key) == m_flyweights.end())   ///  NICHT vorhanden
             {
                 std::cout << "FlyweightFactory: Can't find a flyweight, creating new one." << std::endl;
                 std::shared_ptr<Flyweight> flyweight{ std::make_shared<Flyweight>(sharedState) };
@@ -205,12 +206,16 @@ static void test_conceptual_example_01() {
     FlyweightFactory factory
     {
         /* std::initializer_list of SharedState-objects
+        *  Ab C++ 17 kann man bei "zu vielen" Klammern eine Ebene der Klammern weglassen
+        *  ===> Brace Elision  ( Auslassen / Weglassen )
         */
-        {"Chevrolet", "Camaro2018", "pink"},
-        {"Mercedes Benz", "C300", "black"},
-        {"Mercedes Benz", "C500", "red"},
-        {"BMW", "M5", "red"},
-        {"BMW", "X6", "white"}
+        {
+            {"Chevrolet", "Camaro2018", "pink"},
+            {"Mercedes Benz", "C300", "black"},
+            {"Mercedes Benz", "C500", "red"},
+            {"BMW", "M5", "red"},
+            {"BMW", "X6", "white"}
+        }
     };
 
     factory.listFlyweights();
@@ -263,7 +268,7 @@ static void test_conceptual_example_02() {
     addCarToDatabase(
         factory,
         "James Doe",
-        "CL234IR",
+        "CL234QZ",
         "BMW",
         "M5",         // <== this car variant always exists
         "red");
