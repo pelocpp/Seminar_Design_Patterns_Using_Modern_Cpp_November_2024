@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\ConceptualExample">
+      <UniqueIdentifier>{28cfce18-f9a1-4903-beda-c33387b50983}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\JobApplication">
+      <UniqueIdentifier>{2762b449-7e1a-4e1e-bc25-aee5321471ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\DepartmentStore">
+      <UniqueIdentifier>{6ed4863f-b3bf-4dce-a6f0-9d1abd401fc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\FiniteStateMachine_LightSwitch">
+      <UniqueIdentifier>{0aaf57be-a0ea-4156-ac28-7fbf309d8b9f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ConceptualExample01.cpp">
+      <Filter>Source Files\ConceptualExample</Filter>
+    </ClCompile>
+    <ClCompile Include="Program.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ConceptualExample02.cpp">
+      <Filter>Source Files\ConceptualExample</Filter>
+    </ClCompile>
+    <ClCompile Include="ConceptualExample03.cpp">
+      <Filter>Source Files\ConceptualExample</Filter>
+    </ClCompile>
+    <ClCompile Include="JobApplication.cpp">
+      <Filter>Source Files\JobApplication</Filter>
+    </ClCompile>
+    <ClCompile Include="DepartmentStore.cpp">
+      <Filter>Source Files\DepartmentStore</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine_LightSwitch\LightSwitchMain.cpp">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine_LightSwitch\ConcreteLightStates.cpp">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClCompile>
+    <ClCompile Include="FiniteStateMachine_LightSwitch\Light.cpp">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Readme.md">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\dp_state_pattern.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\dp_state_pattern_job_application.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Resources\dp_state_pattern_light_switch_states.svg">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ConceptualExample01.h">
+      <Filter>Source Files\ConceptualExample</Filter>
+    </ClInclude>
+    <ClInclude Include="ConceptualExample02.h">
+      <Filter>Source Files\ConceptualExample</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteStateMachine_LightSwitch\ConcreteLightStates.h">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteStateMachine_LightSwitch\Light.h">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClInclude>
+    <ClInclude Include="FiniteStateMachine_LightSwitch\LightState.h">
+      <Filter>Source Files\FiniteStateMachine_LightSwitch</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Resources\java_thread_states.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Resources\dp_state_pattern_intro.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+</Project>

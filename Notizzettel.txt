@@ -1,0 +1,253 @@
+// =================
+
+C++ Design Pattern
+
+Guten Morgen
+
+Peter Loos
+
+// =================
+
+Entwicklung // Schulung
+
+C/C++  Java C#  Mobile Progr. (Java) 
+
+Back to the Roots: C/C++
+
+===================
+
+== 2 Tools
+
+==== IDE: Gcc, CLang, Visual C++
+
+==== Unterlagen:
+
+https://github.com/pelocpp/cpp_design_patterns/blob/master/Readme.md
+
+===================
+
+== Was sind meine Erwartungen
+== Überblick über Muster
+== Sind spezielle Muster erwünscht?
+== Sonstiges / Bestimmte Techniken
+
+== Welche Sprachen habe ich so parat ??? Querbezüge
+
+
+== MVC
+== Umstellung C nach C++
+== Refaktoring
+
+== Komposition / Vererbung / Polymorphismus
+
+== CRTP // Performanz  
+
+== C++ 20 aufwärts:  Concepts und Requirements 
+
+
+== Meine Erwartungen: FRAGEN ... 
+
+===================
+
+Pausen:   12.30 ... 13.20 
+
+Kaffeepause  ca. 10.30
+
+===================
+
+class Window
+{
+   private:
+     int width;
+     int height;
+
+     public:
+     void paint();
+     void moveTo(int x, int y);
+};
+
+Konzept der Interfaces:  Entkopplung.
+
+Tabelle der Funktionspointer: vtable // virtual function pointer table
+
+virtual - Methode: Diese wird "indirekt" aufgerufen.   "->"
+
+Methode "vererben" - virtual nicht erforderlich.
+Abstrakte Klasse: Hat Realisierung einer Methode // diese ist fix // kein virtual
+
+Methode:  Default: virtual
+          Nicht virtual: final
+
+
+Abstrakte Klasse: Unvollständige Klasse 
+
+
+Abstrakte Klasse: Ist dazu da, Teile, die "alle" betreffen,
+                  "herauszufaktorisieren"
+
+                  == EINMAL
+                  == Besser wartbar / änderbar
+
+
+Klasse  std::string   // Zeichenketten
+
+(Java)  ===> final
+
+Grund: Die Klasse String verwalten einen String-Pool
+       für konstante Zeichenketten.
+
+IPAddress
+
+===================
+
+Was ist Structured Binding:
+
+Vergibt Namen für Aggregat-Typen
+
+Beispiel:   std::pair<std::string, int> eintrag { "Hans", 123456};
+
+              std::pair<std::string, int> entry =  getEntry  (..........);
+
+              auto entry =  getEntry  (..........);
+
+              std::string name = entry.first;
+              int number = entry.second;
+
+              // Syntax: Structured Binding
+
+              auto& [name, number] = getEntry  (..........);
+
+              name == entry.first;
+
+              number == entry.second;
+
+// ========================================================
+
+Adapter:
+
+Beispiel:
+
+Formate:
+
+== XML
+== JSON
+
+XML wird prinzipiell nicht unterstützt.
+
+Strukturiert unterstützen kann.
+
+// ========================================================
+
+Strategy:
+
+MarkDown:
+
+Liste:
+
+  *
+
+
+<ul>
+  <li></li>
+</ul>
+
+
+
+Dynamischer Polymorphismus   // interface, Vererbung, virtual
+
+"Statischer Polymorphismus"  Dies gibt es hier alles nicht: Fair-Play
+
+==========> Idiom:  "CRTP"
+
+Laufzeitunterschied:
+
+Wieviele virtual // non-virtual Methodenaufrufe habe ich ?????
+
+50%
+
+
+// ==================
+
+Ein Vergleich
+
+        m_list_strategy->start(m_oss);
+00007FF6DBFA22C5  mov         rax,qword ptr [this]  
+00007FF6DBFA22CC  mov         rcx,rax  
+00007FF6DBFA22CF  call        std::unique_ptr<IListStrategy,std::default_delete<IListStrategy> >::operator-> (07FF6DBF850EFh)  
+00007FF6DBFA22D4  mov         qword ptr [rbp+138h],rax       // Taktzyklen
+00007FF6DBFA22DB  mov         rax,qword ptr [this]  
+00007FF6DBFA22E2  add         rax,8  
+00007FF6DBFA22E6  mov         rcx,qword ptr [rbp+138h]       // Taktzyklen
+00007FF6DBFA22ED  mov         rcx,qword ptr [rcx]  
+00007FF6DBFA22F0  mov         qword ptr [rbp+140h],rcx  
+00007FF6DBFA22F7  mov         rdx,rax  
+00007FF6DBFA22FA  mov         rcx,qword ptr [rbp+138h]  
+00007FF6DBFA2301  mov         rax,qword ptr [rbp+140h]  
+00007FF6DBFA2308  call        qword ptr [rax+8]              // call INDIREKT // [RAX + 8]
+
+
+
+        m_list_strategy.start(m_oss);
+00007FF6DBFA21C5  mov         rax,qword ptr [this]  
+00007FF6DBFA21CC  add         rax,8  
+00007FF6DBFA21D0  mov         rcx,qword ptr [this]  
+00007FF6DBFA21D7  mov         rdx,rax  
+00007FF6DBFA21DA  call        MarkdownListStrategyEx::start (07FF6DBF84848h)  // call DIREKT
+
+=================================================================
+
+
+Observer Pattern:
+
+shared_from_this
+
+=================================================================
+
+Template Method Pattern:
+
+Tetris:
+
+moveFigure:
+
+Hmmm, eigentlich ist diese Methode identisch für alle 8 Tetris-Figuren.
+
+Links anstoßen
+
+=================================================================
+
+Decorator Pattern:
+
+Statische Anwendung mit der Template Technik ebenfalls möglich.
+
+=================================================================
+
+Proxy Pattern:
+
+Stellvertreter:
+
+COM // DCOM // Verteilte Objekte:
+CORBA
+RMI
+
+Prozess A: Objekt obj;   PROXY
+
+Existenz von obj:  Prozess B:
+
+obj.method();   ===>  Parameter einpacken (Marshalling) ==> Prozess B:
+
+                ===> Parameter auspacken (Unmarshalling): Stack aufbereitet:  Original 'obj'
+
+=================================================================
+
+Fabriken:
+=========
+
+Uneinheitlich:  Wort "Factory" ===> es gibt viele Fabriken.
+
+a) Simple Factory : Ideen / Ansätze zu vermitteln.
+
+
+b) Factory Methode: Pattern : klassisch vorhanden 
+
+
+c) Abstract Fatory
