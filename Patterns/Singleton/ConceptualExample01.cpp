@@ -12,14 +12,18 @@ namespace ConceptualExample01 {
     {
     private:
         static Singleton* m_instance;
+
         static std::mutex m_mutex;
 
     private:
         Singleton() = default;
 
+        // no copy
         Singleton(const Singleton&) = delete;
-        Singleton(Singleton&&) noexcept = delete;
         Singleton& operator=(const Singleton&) = delete;
+
+        // no move
+        Singleton(Singleton&&) noexcept = delete;
         Singleton& operator=(Singleton&&) noexcept = delete;
 
     public:
@@ -35,11 +39,20 @@ namespace ConceptualExample01 {
         static Singleton* getInstanceThreadSafe()
         {
             {
-                std::lock_guard<std::mutex> lock{ m_mutex };
+                std::lock_guard<std::mutex> guard{ m_mutex };  // m_mutex.lock()
+
                 if (m_instance == nullptr) {
                     m_instance = new Singleton{};
                 }
-            }
+
+                //m_mutex.lock();
+                //if (m_instance == nullptr) {
+                //    m_instance = new Singleton{};  // Exception: bad_alloc
+                //}
+                ////break;
+                ////throw;
+                //m_mutex.unlock();
+            }                               //  // m_mutex.unlock()
 
             return m_instance;
         }

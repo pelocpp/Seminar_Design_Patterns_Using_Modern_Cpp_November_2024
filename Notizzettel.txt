@@ -251,3 +251,101 @@ b) Factory Methode: Pattern : klassisch vorhanden
 
 
 c) Abstract Fatory
+
+
+======================================================
+
+RAII
+
+OO:
+
+Klassen:
+
+Konstruktoren:   Bei Erzeugung
+Destruktoren:    Am Ende des Scopes
+
+Aufrufs:         Deterministisch.
+
+Zusammenhang zu Mutex , Sockets (open, close), SqlConnection (create, release),
+                new / delete (std::unique_ptr, ...), Resources:
+
+==> Hüllenklassen:  Resources werden innerhalb von Hüllenklassen untergebracht.
+
+Konstruktoren:   Bei Erzeugung (lock)
+Destruktoren:    Freigabe der Resource (delete, close, unlock)
+
+=====================================
+
+XML Parsern
+
+C++ API:  Parser Singleton
+
+std::cout << LANGE_ZEICHENKETTE;  // thread-safe !!!
+
+std::cout << LANGE_ZEICHENKETTE << ZWEITE_ZEICHENKETTE;  // nicht thread-safe !!!
+
+
+std::stringstream  ss;  // Stack // Exklusiv 
+
+std::cout << ss.str();   // kein Mutex
+
+=====================================
+
+Was ist "Virtueller Konstruktor"
+
+Prototyp:
+
+== Ich habe ein Objekt.
+== Ich möchte eine Kopie davon erzeugen.
+
+-- Kopier-Konstruktor
+-- Ich kenne den Namen der Klasse: Konstruktor
+
+Situation:
+
+== Game Programming:
+
+Figure* board [8][8];
+
+class Figure;
+
+class Rock : public Figure
+class Queen : public Figure
+class Pawn :  public Figure
+
+Problem:
+
+Figure* figure = board [3][4];  // Figure: Basisklasse, Abstrakt, 
+
+Möchte von board [3][4] eine Kopie erstellen?
+
+=====================================
+
+Daten sind weiterzureichen.
+
+Wo kommen die Daten her ???????
+
+Komplex API
+
+Ich will dieses API nicht sehen.
+
+"Da schreiben wir doch mal eine Schicht"  // Layer
+
+=====================================
+
+Facade Pattern.
+
+Win32 - Betriebssystemschnittstelle von Windows
+
+POSIX - Betriebssystemschnittstelle von Unix
+
+
+Facaden:  Win32 ==> .NET Framework
+
+=====================================
+
+
+
+
+
+

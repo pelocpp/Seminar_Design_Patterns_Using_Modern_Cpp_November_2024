@@ -94,6 +94,8 @@ namespace ConceptualExample02 {
         if (m_instance == nullptr)
         {
             std::lock_guard<std::mutex> lock{ m_mutex };
+            
+            // Exklusiv
             if (m_instance == nullptr)  // <=== NOTE: double-check of m_instance being nullptr
             {
                 m_instance = new Singleton{ value };

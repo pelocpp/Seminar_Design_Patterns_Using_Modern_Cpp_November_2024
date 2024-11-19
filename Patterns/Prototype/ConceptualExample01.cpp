@@ -29,7 +29,7 @@ namespace ConceptualExample01
 
         virtual ~Prototype() {}
         
-        virtual Prototype* clone() const = 0;
+        virtual Prototype* clone() const = 0;   // abstract // pure pirtual
 
     public:
         int getId() const { return m_id; }
@@ -39,13 +39,15 @@ namespace ConceptualExample01
     class ConcretePrototype : public Prototype
     {
     public:
-        ConcretePrototype(int id) : Prototype{ id } {}
+        ConcretePrototype(int id) 
+            : Prototype{ id }
+        {}
 
         // Note: Return Type = Type of base class - 
         // but 'virtual ConcretePrototype* clone()' compiles too
         virtual Prototype* clone() const override
         {
-            return new ConcretePrototype(*this);
+            return new ConcretePrototype(*this);   // KOPIE
         }
     };
 
